@@ -5,7 +5,7 @@
 	"type": "camoo-plugin",
 	"license": "MIT",
 	"minimum-stability": "dev",
-	"version": "1.0",
+	"version": "1.1",
 	"prefer-stable" : true,
 	"authors": [
 		{
@@ -25,7 +25,7 @@
 		}
 	},
 	"require": {
-		"php": ">=7.3",
+		"php": ">=7.4",
 		"doctrine/inflector": "^2.0"
 	},
 	"suggest": {

@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Camoo\Inflector;
@@ -19,21 +20,23 @@ use Doctrine\Inflector\InflectorFactory;
  */
 class Inflector
 {
-
-    /**
-     * Inflector should not be Instantiated
-     */
+    /** Inflector should not be Instantiated */
     private function __construct()
     {
     }
 
-    public static function __callStatic(string $method, $args)
+    public static function __callStatic(string $method, array $args): string
     {
         $inflector = InflectorFactory::create()->build();
         if (!method_exists($inflector, $method)) {
             throw new InflectorException(sprintf('Method %s::%s does not exist', get_class(new self()), $method));
         }
+
         return call_user_func_array([$inflector, $method], $args);
     }
 
+    public static function humanize(string $word, string $separator = '_'): string
+    {
+        return implode(' ', array_map([self::class, 'classify'], explode($separator, $word)));
+    }
 }
